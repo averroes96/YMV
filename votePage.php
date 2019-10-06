@@ -19,40 +19,61 @@ body,h1 {font-family: "Raleway", sans-serif}
 body, html {height: 100%}
 .bgimg {
   background-image: url('images/main-picture.jpg');
-    min-height: 120%;
+    min-height: 100%;
     background-position: center;
     background-size: cover;
 }
-</style>    
+</style>
+<script src="js/jquery-3.4.1.min.js" ></script>     
 <body>
-<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
-
-  <div class="w3-display-topleft w3-padding-large w3-xlarge">
-    Logo
+<div class="bgimg w3-container w3-animate-opacity w3-text-white">
+<div class="w3-row-padding" style="min-height:70%">
+  <div class="w3-quarter w3-padding-large">
+    <img src="images/ymv_logo.png" alt="Logo" style="max-height:100px">
   </div>
-    <a href="logout.php" class="w3-hover-text-blue w3-display-topmiddle w3-padding w3-large" style="text-decoration : none"><i class="fas fa-sign-out-alt"></i> Sign out</a>
-  <div class="w3-display-middle w3-padding">
-        <h1 class="w3-animate-zoom w3-center">Debate queastion here ?</h1>
+<?php
+        if($_SESSION["voteNbr"] == 0){  ?>    
+  <div id="main-txt" class="w3-half w3-padding w3-center" style="margin:10% 0 0 0">
+      
+        <h3 class="w3-animate-zoom w3-center">Debate question here ?</h3>
         <br>
-          <form class="w3-center w3-padding w3-animate-zoom" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST"> 
+          <form class="w3-center w3-padding w3-animate-zoom" action="first-vote.php" method="POST"> 
             <label class="container">With
-              <input type="radio" name="poll">
+              <input type="radio" name="poll" value="1">
               <span class="checkmark"></span>
             </label>
 
             <label class="container">Against
-              <input type="radio" name="poll">
+              <input type="radio" name="poll" value="0">
               <span class="checkmark"></span>
-            </label>
-            <button name="submit" type="submit" class="w3-button w3-circle w3-padding w3-margin"><i class="fas fa-2x fa-arrow-circle-right w3-hover-text-blue"></i></button>               
-          </form> 
-    </div>  
-<div class="w3-display-topright w3-center w3-padding-large w3-large">
+            </label> 
+            <button id="load" type="submit" name="submit" class="w3-button w3-circle w3-padding w3-margin"><i class="fas fa-2x fa-arrow-circle-right w3-hover-text-blue"></i></button>                
+          </form>    
+</div>
+<?php   } else {    ?>
+    <div id="main-txt" class="w3-half w3-padding w3-center" style="margin:20% 0 0 0">            
+      <p class="w3-blue w3-large w3-round w3-opacity w3-center w3-padding">Your first vote was submitted ! </p>
+    </div>      
+            
+<?php        }   ?>      
+<div class="w3-quarter w3-padding">
 
-    Sponsors
+    <a href="logout.php" class="w3-hover-text-blue w3-padding w3-large w3-right" style="text-decoration : none"><i class="fas fa-sign-out-alt"></i> Sign out</a>
     
+</div>
+    </div>    
+<div class="w3-col s6 w3-padding">
+      <h3>Co-sponsored by :</h3>
+            <img class="w3-animate-zoom w3-white w3-round w3-padding" src="images/Anna%20Lindh%20Foundation.png" alt="Sponsor1" style="width : 200px; height:80px">
+            <img class="w3-animate-zoom w3-white w3-round w3-padding"  src="images/British%20Council.png" alt="Sponsor2" style="width : 200px; height:80px">
 </div>    
-</div>   
+<div class="w3-col s6 w3-padding">
+        <div class="w3-right">
+            <h3 class="">Co-Founded by :</h3>
+            <img class="w3-animate-zoom w3-round w3-padding"  src="images/flag_yellow_high.jpg" alt="Founder" style="width : 200px; height:80px">
+        </div>
+</div>    
+</div>  
 </body>
 </html>
 <?php
