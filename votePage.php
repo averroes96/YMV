@@ -49,7 +49,7 @@ body, html {height: 100%}
             </label> 
             <button id="load" type="submit" name="submit" class="w3-button w3-circle w3-padding w3-margin"><i class="fas fa-2x fa-arrow-circle-right w3-hover-text-blue"></i></button>                
           </form>    
-</div>
+    </div>
 <?php   } else {    ?>
     <div id="main-txt" class="w3-half w3-padding w3-center" style="margin:20% 0 0 0">            
       <p class="w3-blue w3-large w3-round w3-opacity w3-center w3-padding">Your first vote was submitted ! </p>
@@ -61,19 +61,23 @@ body, html {height: 100%}
     <a href="logout.php" class="w3-hover-text-blue w3-padding w3-large w3-right" style="text-decoration : none"><i class="fas fa-sign-out-alt"></i> Sign out</a>
     
 </div>
-    </div>    
-<div class="w3-col s6 w3-padding">
-      <h3>Co-sponsored by :</h3>
-            <img class="w3-animate-zoom w3-white w3-round w3-padding" src="images/Anna%20Lindh%20Foundation.png" alt="Sponsor1" style="width : 200px; height:80px">
-            <img class="w3-animate-zoom w3-white w3-round w3-padding"  src="images/British%20Council.png" alt="Sponsor2" style="width : 200px; height:80px">
-</div>    
-<div class="w3-col s6 w3-padding">
-        <div class="w3-right">
-            <h3 class="">Co-Founded by :</h3>
-            <img class="w3-animate-zoom w3-round w3-padding"  src="images/flag_yellow_high.jpg" alt="Founder" style="width : 200px; height:80px">
+    </div>       
+</div>
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-light-grey w3-xlarge">
+    <div class="w3-row-padding">    
+        <div class="w3-twothird">
+              <h3 class="w3-ymv-text">Co-sponsored by</h3>
+                    <img class="w3-animate-zoom w3-round w3-padding" src="images/Anna%20Lindh%20Foundation.png" alt="Sponsor1" style="width : 220px; height:100px">
+                    <img class="w3-animate-zoom w3-round w3-padding"  src="images/British%20Council.png" alt="Sponsor2" style="width : 220px; height:100px">
+        </div>    
+        <div class="w3-third w3-center">
+                    <h3 class="w3-ymv-text">Co-Founded by</h3>
+                    <img class="w3-animate-zoom w3-round w3-padding"  src="images/flag_yellow_high.jpg" alt="Founder" style="width : 200px; height:100px">
         </div>
-</div>    
-</div>  
+    </div>    
+
+</footer>    
 </body>
 </html>
 <?php

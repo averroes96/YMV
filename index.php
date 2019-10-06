@@ -82,12 +82,16 @@ body, html {height: 100%}
     background-position: center;
     background-size: cover;
 }
+body{
+        
+    background-color: #006884;    
+    }
 </style>
 <body>
-<div class="bgimg w3-container w3-animate-opacity w3-text-white">
+<div class="bgimg w3-animate-opacity w3-text-white">
 <div class="w3-row-padding">
   <div class="w3-quarter w3-padding-large">
-    <img src="images/ymv_logo.png" alt="Logo" style="max-height:100px">
+    <img class="w3-padding" src="images/ymv_logo.png" alt="Logo" style="max-height:100px">
   </div>   
   <div class="w3-half w3-padding" style="margin: 10% 0 0 0">
         <p class="w3-xlarge w3-animate-top w3-center">Welcome to the Algerian competition of debate</p>
@@ -95,7 +99,7 @@ body, html {height: 100%}
           <form class="w3-center" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST"> 
             <input autocomplete="off" required name="code" type="text" class="w3-animate-input code-input w3-input w3-round w3-hover-shadow w3-text-grey" placeholder="Enter your code">
             <i class="fa fa-unlock-alt w3-text-grey"></i>
-            <button name="submit" type="submit" class="w3-button w3-circle w3-padding w3-margin"><i class="fas fa-2x fa-arrow-circle-right w3-hover-text-blue"></i></button> 
+            <button name="submit" type="submit" class="w3-button w3-circle w3-padding w3-margin"><i class="fas fa-2x fa-arrow-circle-right w3-hover-ymv"></i></button> 
           </form>
 <?php if(isset($formErrors) && !empty($formErrors)){    ?>      
       <p class="w3-red w3-round w3-opacity w3-center w3-padding">
@@ -123,21 +127,25 @@ body, html {height: 100%}
 <?php   }   ?>
 
     </div>
-    </div>    
-<div class="w3-col s6 w3-padding">
-      <h3>Co-sponsored by :</h3>
-            <img class="w3-animate-zoom w3-white w3-round w3-padding" src="images/Anna%20Lindh%20Foundation.png" alt="Sponsor1" style="width : 200px; height:80px">
-            <img class="w3-animate-zoom w3-white w3-round w3-padding"  src="images/British%20Council.png" alt="Sponsor2" style="width : 200px; height:80px">
-</div>    
-<div class="w3-col s6 w3-padding">
-        <div class="w3-right">
-            <h3 class="">Co-Founded by :</h3>
-            <img class="w3-animate-zoom w3-round w3-padding"  src="images/flag_yellow_high.jpg" alt="Founder" style="width : 200px; height:80px">
-        </div>
-</div>    
+    </div>     
 
  
 </div>
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-light-grey w3-xlarge">
+    <div class="w3-row-padding">    
+        <div class="w3-twothird">
+              <h3 class="w3-ymv-text">Co-sponsored by</h3>
+                    <img class="w3-animate-zoom w3-round w3-padding" src="images/Anna%20Lindh%20Foundation.png" alt="Sponsor1" style="width : 220px; height:100px">
+                    <img class="w3-animate-zoom w3-round w3-padding"  src="images/British%20Council.png" alt="Sponsor2" style="width : 220px; height:100px">
+        </div>    
+        <div class="w3-third w3-center">
+                    <h3 class="w3-ymv-text">Co-Founded by</h3>
+                    <img class="w3-animate-zoom w3-round w3-padding"  src="images/flag_yellow_high.jpg" alt="Founder" style="width : 200px; height:100px">
+        </div>
+    </div>    
+
+</footer>      
 <script src="js/jquery-3.4.1.min.js" ></script>     
 </body>    
 </html>
