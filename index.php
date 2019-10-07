@@ -23,7 +23,6 @@
         if(isset($_POST["submit"])){
             
             $code = filter_var($_POST["code"], FILTER_SANITIZE_STRING);
-            $code = sha1($code);
             
             $stmt = $conn->prepare("SELECT * FROM code WHERE code = ? LIMIT 1");
             $stmt->execute(array($code));
@@ -132,7 +131,7 @@ body{
  
 </div>
 <!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-light-grey w3-xlarge">
+<footer class="w3-container w3-padding-16 w3-light-grey w3-xlarge">
     <div class="w3-row-padding">    
         <div class="w3-twothird">
               <h3 class="w3-ymv-text">Co-sponsored by</h3>
@@ -141,7 +140,7 @@ body{
         </div>    
         <div class="w3-third w3-center">
                     <h3 class="w3-ymv-text">Co-Founded by</h3>
-                    <img class="w3-animate-zoom w3-round w3-padding"  src="images/flag_yellow_high.jpg" alt="Founder" style="width : 200px; height:100px">
+                    <img class="w3-animate-zoom w3-round w3-padding"  src="images/flag_yellow_high.jpg" alt="Founder" style="width : 170px; height:100px">
         </div>
     </div>    
 

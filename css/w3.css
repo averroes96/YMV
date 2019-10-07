@@ -247,6 +247,7 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
     padding-left: 30px
 }
 .w3-ymv-text{color: #006884}
+.w3-ymv-text1{color: #F58026;}
 .w3-hover-ymv:hover {color: #F58026;}
-.w3-ymv {background-color: #F58026;}
+.w3-ymv {background-color: #F58026; color:white}
 .w3-ymv1{background-color: #006884; color:white}

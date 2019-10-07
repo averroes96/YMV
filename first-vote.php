@@ -12,7 +12,6 @@
                 if($_SESSION["voteNbr"] < 1){
                 
                     $code = filter_var($_SESSION["code"], FILTER_SANITIZE_STRING);
-                    $code = sha1($code);
 
                     $vote = $_POST["poll"];    
 
