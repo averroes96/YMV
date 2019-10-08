@@ -2,37 +2,37 @@
 
     function proDate($date){
         
-        if(strtotime($date) > strtotime('- 1 minute') ){
+        if(strtotime($date) > strtotime('-1 minute') ){
             
             return "Just now";
         }
-        else if(strtotime($date) < strtotime('-1 minute') &&  strtotime($date) > strtotime('- 2 minutes'))
+        else if(strtotime($date) < strtotime('-1 minute') &&  strtotime($date) > strtotime('-2 minutes'))
             return "1 min";
-        else if(strtotime($date) < strtotime('- 2 minutes') && strtotime($date) > strtotime('- 3 minutes'))
+        else if(strtotime($date) < strtotime('-2 minutes') && strtotime($date) > strtotime('-3 minutes'))
             return "2 mins";
-        else if(strtotime($date) < strtotime('- 3 minutes') &&  strtotime($date) > strtotime('- 4 minutes'))
+        else if(strtotime($date) < strtotime('-3 minutes') &&  strtotime($date) > strtotime('-4 minutes'))
             return "3 mins";
-        else if(strtotime($date) < strtotime('- 4 minutes') &&  strtotime($date) > strtotime('- 5 minutes'))
+        else if(strtotime($date) < strtotime('-4 minutes') &&  strtotime($date) > strtotime('-5 minutes'))
             return "4 mins"; 
-        else if(strtotime($date) < strtotime('- 5 minutes') &&  strtotime($date) > strtotime('- 6 minutes'))
+        else if(strtotime($date) < strtotime('-5 minutes') &&  strtotime($date) > strtotime('6 minutes'))
             return "5 mins";  
-        else if(strtotime($date) < strtotime('- 6 minutes') &&  strtotime($date) > strtotime('- 7 minutes'))
+        else if(strtotime($date) < strtotime('-6 minutes') &&  strtotime($date) > strtotime('-7 minutes'))
             return "6 mins";  
-        else if(strtotime($date) < strtotime('- 7 minutes') &&  strtotime($date) > strtotime('- 8 minutes'))
+        else if(strtotime($date) < strtotime('-7 minutes') &&  strtotime($date) > strtotime('-8 minutes'))
             return "7 mins";  
-        else if(strtotime($date) < strtotime('- 8 minutes') &&  strtotime($date) > strtotime('- 9 minutes'))
+        else if(strtotime($date) < strtotime('-8 minutes') &&  strtotime($date) > strtotime('-9 minutes'))
             return "8 mins"; 
-        else if(strtotime($date) < strtotime('- 9 minutes') &&  strtotime($date) > strtotime('- 10 minutes'))
+        else if(strtotime($date) < strtotime('-9 minutes') &&  strtotime($date) > strtotime('-10 minutes'))
             return "9 mins";
-        else if(strtotime($date) < strtotime('- 10 minutes') &&  strtotime($date) > strtotime('- 20 minutes'))
+        else if(strtotime($date) < strtotime('-10 minutes') &&  strtotime($date) > strtotime('-20 minutes'))
             return "10 mins";
-        else if(strtotime($date) < strtotime('- 20 minutes') &&  strtotime($date) > strtotime('- 30 minutes'))
+        else if(strtotime($date) < strtotime('-20 minutes') &&  strtotime($date) > strtotime('-30 minutes'))
             return "20 mins";
-        else if(strtotime($date) < strtotime('- 30 minutes') &&  strtotime($date) > strtotime('- 40 minutes'))
+        else if(strtotime($date) < strtotime('-30 minutes') &&  strtotime($date) > strtotime('-40 minutes'))
             return "30 mins";
-        else if(strtotime($date) < strtotime('- 40 minutes') &&  strtotime($date) > strtotime('- 50 minutes'))
+        else if(strtotime($date) < strtotime('-40 minutes') &&  strtotime($date) > strtotime('-50 minutes'))
             return "40 mins";
-        else if(strtotime($date) < strtotime('- 50 minutes') &&  strtotime($date) > strtotime('- 60 minutes'))
+        else if(strtotime($date) < strtotime('- 50 minutes') &&  strtotime($date) > strtotime('-60 minutes'))
             return "50 mins";
         else if(strtotime($date) < strtotime('- 60 minutes') && strtotime($date) > strtotime('- 2 hours'))
             return "1 hour";
@@ -125,11 +125,11 @@
         
     }
 
-    function checkRecord($select, $from, $value){
+    function checkRecord($select, $from, $value, $andClause=''){
         
         global $conn;
         
-        $stmt = $conn->prepare("SELECT $select FROM $from WHERE $select = ?");
+        $stmt = $conn->prepare("SELECT $select FROM $from WHERE $select = ?" . $andClause);
         $stmt->execute(array($value));
         $count = $stmt->rowCount();
         

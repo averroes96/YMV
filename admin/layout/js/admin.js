@@ -8,7 +8,7 @@ $(function(){
         var itemsToPaginate;
         var dflt = {
         
-        itemsPerPage : 12
+        itemsPerPage : 20
         
     };
         var settings = {};

@@ -117,11 +117,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   </div>
   <div class="w3-bar-block">
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"></a>
-    <a href="dashboard.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Overview</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Codes</a>
-    <a href="votes.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Votes</a>       
-    <a href="new-admin.php" class="w3-bar-item w3-button w3-padding w3-ymv1"><i class="fa fa-users fa-fw"></i>  New admin</a>
-    <a href="../logout.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Logout</a>      
+    <a href="dashboard.php" class="w3-bar-item w3-button w3-padding"><i class="fas fa-chart-line fa-fw"></i>  Overview</a>
+    <a href="codes.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-lock fa-fw"></i>  Codes</a>
+    <a href="votes.php" class="w3-bar-item w3-button w3-padding"><i class="fas fa-vote-yea fa-fw"></i>  Votes</a>       
+    <a href="new-admin.php" class="w3-bar-item w3-button w3-padding w3-ymv1"><i class="fa fa-user fa-fw"></i>  New admin</a>
+    <a href="../logout.php" class="w3-bar-item w3-button w3-padding"><i class="fas fa-sign-out-alt fa-fw"></i>  Logout</a>      
   </div>
 </nav>
 
@@ -132,7 +132,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                     
                     
                     
-                    <form class="w3-card w3-white" style="margin:10% 10%" action="<?php echo $_SERVER["PHP_SELF"] ?>" method="post">
+                    <form class="w3-card w3-white w3-padding" style="margin: 5% 10%" action="<?php echo $_SERVER["PHP_SELF"] ?>" method="post">
                         
                         <h1 class="w3-center w3-text-dark-grey">New admin</h1>
                         

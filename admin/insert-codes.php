@@ -15,7 +15,7 @@
         
     try{    
 
-    for($i=0;$i<200;$i++){
+    for($i=0; $i<200 ;$i++){
         
     $stmt = $conn->prepare("INSERT INTO code(code) VALUES(:zcode)");
     $stmt->execute(array(
@@ -23,8 +23,10 @@
         "zcode" => generateRandomString()
     
     ));
-        
-    catch(SQLException){
+    
+    }
+    }
+    catch(SQLException $e){
         
         echo "<p>Database Error ! Try again !</p>";
         echo "<br>";
@@ -32,12 +34,9 @@
         
     }    
         
-        
-    }
-
 
                         
-                        $stmt = $conn->prepare("UPDATE status SET current_status = 0");
+                        $stmt = $conn->prepare("UPDATE status SET current_vote = 1");
                         $stmt->execute();
                         
                         $_SESSION["current_status"] = 0 ;

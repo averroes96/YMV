@@ -21,4 +21,4 @@
             $stmt->execute();
             $row = $stmt->fetch();
 
-            $_SESSION["current_status"] = $row["current_vote"];
+            $_SESSION["current_vote"] = $row["current_vote"];

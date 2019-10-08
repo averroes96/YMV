@@ -44,7 +44,6 @@
             if($count > 0){
                 
                 $_SESSION['username'] = $row["username"];
-                $_SESSION["current_status"] = 0;
                 header("location: dashboard.php");
                 exit();
             }

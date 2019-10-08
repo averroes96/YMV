@@ -38,7 +38,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
     <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu
     </button>
-  <span class="w3-bar-item w3-right"><img src="../images/ymv_logo.png" alt="Logo" style="max-height:40px; max-width:40px"></span>
+  <a href="../index.php" class="w3-bar-item w3-right"><img src="../images/ymv_logo.png" alt="Logo" style="max-height:40px; max-width:40px"></a>
 </div>
 
 <!-- Sidebar/menu -->
@@ -54,11 +54,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   </div>
   <div class="w3-bar-block">
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"></a>
-    <a href="#" class="w3-bar-item w3-button w3-padding w3-ymv1"><i class="fa fa-users fa-fw"></i>  Overview</a>
-    <a href="codes.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Codes</a>
-    <a href="votes.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Votes</a>      
-    <a href="new-admin.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  New admin</a>
-    <a href="../logout.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Logout</a>      
+    <a href="dashboard.php" class="w3-bar-item w3-button w3-padding w3-ymv1"><i class="fas fa-chart-line fa-fw"></i>  Overview</a>
+    <a href="codes.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-lock fa-fw"></i>  Codes</a>
+    <a href="votes.php" class="w3-bar-item w3-button w3-padding"><i class="fas fa-vote-yea fa-fw"></i>  Votes</a>      
+    <a href="new-admin.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw"></i>  New admin</a>
+    <a href="../logout.php" class="w3-bar-item w3-button w3-padding"><i class="fas fa-sign-out-alt fa-fw"></i>  Logout</a>      
   </div>
 </nav>
 
@@ -90,7 +90,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <a class="" href="votes.php">       
     <div class="w3-quarter w3-hover-shadow">
       <div class="w3-container w3-blue w3-padding-16">
-        <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
+        <div class="w3-left"><i class="fas fa-vote-yea w3-xxxlarge"></i></div>
         <div class="w3-right">
           <h3><?php echo getTotal("vote")   ?></h3>
         </div>
@@ -102,15 +102,17 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <a class="" href="votes.php">       
     <div class="w3-quarter w3-hover-shadow">
       <div class="w3-container w3-ymv1 w3-padding-16">
-        <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+        <div class="w3-left"><i class="far fa-thumbs-up w3-xxxlarge"></i></div>
         <div class="w3-right">
           <h3><?php 
         
-            if($_SESSION["current_status"] == 0){
+            if($_SESSION["current_vote"] == 1){
                 echo countItems("*","vote",true,"vote_one",1);
             }
-            else
+            else if($_SESSION["current_vote"] == 2)
                 echo countItems("*","vote",true,"vote_two",1);
+            else
+                echo "0";
         ?>
                                 </h3>
         </div>
@@ -122,17 +124,20 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <a class="" href="votes.php">       
     <div class="w3-quarter w3-hover-shadow">
       <div class="w3-container w3-ymv w3-text-white w3-padding-16">
-        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+        <div class="w3-left"><i class="far fa-thumbs-down w3-xxxlarge"></i></div>
         <div class="w3-right">
             <h3>
                 <?php 
         
-            if($_SESSION["current_status"] == 0){
+            if($_SESSION["current_vote"] == 1){
                 echo countItems("*","vote",true,"vote_one",0);
             }
-            else
+            else if ($_SESSION["current_vote"] == 2)
                 echo countItems("*","vote",true,"vote_two",0);
-            ?>            
+        else
+            echo "0";
+            ?>
+                
             
             </h3>
         </div>
@@ -152,16 +157,16 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                 <canvas class="w3-margin-top" id="myChart1"></canvas>
             </div>
       </div>
-        <h3 class="w3-center w3-ymv-text">Feeds</h3>
+        <h3 class="w3-center w3-ymv-text"><i class="fas fa-fw fa-rss"></i> Feeds</h3>
 <?php   if($countVotes > 0){  ?>          
         <table class="w3-table w3-striped w3-white">
 <?php   foreach ($votes as $vote){    ?>            
           <tr>
-            <td><i class="fa fa-code w3-text-blue w3-large"></i></td>
+            <td><i class="fas fa-bell w3-text-blue w3-large"></i></td>
             <td>ID number <?php echo $vote["code_id"] ?> voted 
             <?php  
                 
-                if($_SESSION["current_vote"] == 0){
+                if($_SESSION["current_vote"] == 1){
                     
                     if($vote["vote_one"] == 0){
                         
@@ -172,7 +177,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                         echo " with";
                     }
                 }
-                else {
+                else if($_SESSION["current_vote"] == 2){
                     
                     if($vote["vote_two"] == 0){
                         
@@ -193,7 +198,12 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
           </tr>
 <?php   }   ?>            
         </table>
-<?php   }   ?>          
+<?php   }
+      
+      else{
+      ?>
+      <p class="w3-ymv1 w3-round w3-opacity w3-center w3-padding" style="width:">No recent activities</p>      
+      <?php  }   ?>
   </div>
   <hr>
   <div class="w3-container">
@@ -216,15 +226,15 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <hr>
 
   <div class="w3-container">
-      <h3 class="w3-center w3-ymv-text"><i class="fas fa-vote-yea"></i> <b>Ratio</b></h3>
+      <h3 class="w3-center w3-ymv-text"><i class="fas fa-vote-yea"></i> Ratio</h3>
     <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
       <tr>
         <td>With</td>
-        <td><?php echo (integer)(($with_count / getTotal("vote")) * 100) ?> %</td>
+        <td><?php if(getTotal("vote") != 0){ echo (integer)(($with_count / getTotal("vote")) * 100); } else {echo 0;} ?> %</td>
       </tr>
       <tr>
         <td>Against</td>
-        <td><?php echo (integer)(($against_count / getTotal("vote")) * 100) ?> %</td>
+        <td><?php if(getTotal("vote") != 0){ echo (integer)(($against_count / getTotal("vote")) * 100); } else {echo 0;} ?> %</td>
       </tr>
     </table><br>
   </div>

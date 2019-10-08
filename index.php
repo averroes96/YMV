@@ -4,6 +4,7 @@
 
     session_start();
 
+
     if(isset($_SESSION["code"])){
         
         header('location: votePage.php');
@@ -13,6 +14,8 @@
     include "config.php" ;
 
     include "scripts/functions.php";
+
+
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         
@@ -33,6 +36,8 @@
             
             if($count > 0){
                 
+                if($_SESSION["current_vote"] == 1){
+                
                 if($row["vote_count"] == 0){
                 
                 $_SESSION['code'] = $_POST["code"];
@@ -46,9 +51,33 @@
                     
                 $formInfos = array();
                     
-                $formInfos[] = "You have already voted using this code before the start of the debate. Wait for its end to vote again";                    
+                $formInfos[] = "You have already submitted your vote using this code before the start of the debate. Wait for its end to vote again";                    
                     
                 }
+                }
+                else if($_SESSION["current_vote"] == 2)
+                {
+                if($row["vote_count"] == 1){
+                
+                $_SESSION['code'] = $_POST["code"];
+                $_SESSION["voteNbr"] = $row["vote_count"];
+                header("location: votePage.php");
+                exit();
+                    
+                }
+                else
+                {
+                    
+                $formInfos = array();
+                    
+                $formInfos[] = "You have already submitted your vote using this code before and after the debate !";                    
+                    
+                }                    
+                    
+                    
+                }    
+                    
+                
                 
             }
                 else {
@@ -153,4 +182,4 @@ body{
 </body>    
 </html>
 
-<?php ob_end_flush();   ?>
+<?php ob_end_flush(); ?>

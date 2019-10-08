@@ -53,11 +53,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   </div>
   <div class="w3-bar-block">
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"></a>
-    <a href="dashboard.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Overview</a>
-    <a href="codes.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Codes</a>
-    <a href="votes.php" class="w3-bar-item w3-button w3-padding w3-ymv1"><i class="fa fa-eye fa-fw"></i>  Votes</a>      
-    <a href="new-admin.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  New admin</a>
-    <a href="../logout.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Logout</a>       
+    <a href="dashboard.php" class="w3-bar-item w3-button w3-padding"><i class="fas fa-chart-line fa-fw"></i>  Overview</a>
+    <a href="codes.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-lock fa-fw"></i>  Codes</a>
+    <a href="votes.php" class="w3-bar-item w3-button w3-padding w3-ymv1"><i class="fas fa-vote-yea fa-fw"></i>  Votes</a>      
+    <a href="new-admin.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw"></i>  New admin</a>
+    <a href="../logout.php" class="w3-bar-item w3-button w3-padding"><i class="fas fa-sign-out-alt fa-fw"></i>  Logout</a>       
   </div>
 </nav>
 
@@ -70,15 +70,59 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                     
                     <h2 class="w3-center w3-text-dark-grey w3-margin-bottom">Votes viewer</h2>
                     <p style="margin: 0 20%"><input class="w3-input w3-border w3-margin-bottom" id="myInput" type="text" placeholder="Search vote.."></p>
+                    
+<?php   if(isset($_GET["do"])){
+      
+      if(isset($_SESSION["username"])){
+          
+          $voteID = isset($_GET['voteID']) && is_numeric($_GET['voteID']) ? intval($_GET['voteID']):0 ;
+          $code = isset($_GET['code']) ? $_GET['code']: '' ;
+          
+            $vote = checkRecord('vote_id','vote',$voteID," AND code = '" . $code ."'");
+                
+                echo "<div class='w3-container w3-white'>";
+
+                if($vote > 0){
+                    
+                    $stmt = $conn->prepare("DELETE FROM vote WHERE vote_id = :zvote"); // to avoid SQL injection
+                    $stmt->bindParam(":zvote",$voteID);
+                    $stmt->execute();                    
+                    
+                    $stmt = $conn->prepare("UPDATE code SET vote_count = 0 WHERE code = :zcode"); // to avoid SQL injection
+                    $stmt->bindParam(":zcode",$code);
+                    $stmt->execute();
+                    
+                    header("location: votes.php");
+                    exit();
+                    
+                }
+                else
+                {
+                    echo "<div class='w3-ymv w3-center w3-round w3-padding w3-margin'>Something went wrong ! Make sure that the vote ID and code are valid</div>";
+                    
+                }          
+          
+          
+      }
+      else {
+          
+                    header("location: index.php");
+                    exit();          
+          
+      }
+      
+      
+      
+  } ?>                    
 <?php   if(!empty($votes)){ ?>                    
 
                     <table class='main-table w3-center w3-hoverabl w3-table table-bordered w3-table w3-card' id="result">
                         <tr>
                         <td class="w3-ymv1 w3-center"> # </td>
-                        <td class="w3-ymv1 w3-center">Vote date</td>
-                        <td class="w3-ymv1 w3-center">code</td>
-                        <td class="w3-ymv1 w3-center">Before</td>
-                        <td class="w3-ymv1 w3-center">After</td>                            
+                        <td class="w3-ymv1 w3-center">CODE</td>
+                        <td class="w3-ymv1 w3-center">BEFORE</td>
+                        <td class="w3-ymv1 w3-center">AFTER</td>
+                        <td class="w3-ymv1 w3-center">ACTIONS</td>    
                         
                         </tr>
                         <?php 
@@ -87,7 +131,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                             
                         <tr class="filtered">
                         <td class="w3-center w3-text-grey"><?php   echo $vote["vote_id"]   ?></td>
-                        <td class="w3-center w3-text-grey"><?php   echo $vote["vote_date"]   ?></td>
                         <td class="w3-center w3-text-grey"><?php   echo $vote["code"]   ?></td>
                         <td class="w3-center w3-text-grey"><?php    if($vote["vote_one"] == 0) echo "AGAINST";   else echo "WITH";   ?></td>
                         <td class="w3-center w3-text-grey"><?php    if($vote["vote_two"] != null ){ 
@@ -97,7 +140,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                             else { echo "NOT YET";}
                             
                             
-                            ?></td>                            
+                            ?></td>
+                        <td class="w3-center"><a href="votes.php?do=delete&voteID=<?php echo $vote["vote_id"] ?>&code=<?php echo $vote["code"] ?>" class="w3-button w3-ymv w3-circle w3-hover-red"><i class="fa fa-times"></i></a></td>    
                         
                         </tr>                            
 
@@ -109,7 +153,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                     <div class="pagination"></div>
 <?php   }else{  ?>
     
-      <p class="w3-blue w3-round w3-opacity w3-center w3-padding">No votes submited yet !</p>    
+      <p class="w3-ymv1 w3-round w3-opacity w3-center w3-padding">No vote submitted yet !</p>    
     
 <?php   }   ?>                    
                 
