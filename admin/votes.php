@@ -56,7 +56,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <a href="dashboard.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Overview</a>
     <a href="codes.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Codes</a>
     <a href="votes.php" class="w3-bar-item w3-button w3-padding w3-ymv1"><i class="fa fa-eye fa-fw"></i>  Votes</a>      
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  New admin</a>
+    <a href="new-admin.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  New admin</a>
     <a href="../logout.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Logout</a>       
   </div>
 </nav>
@@ -77,8 +77,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                         <td class="w3-ymv1 w3-center"> # </td>
                         <td class="w3-ymv1 w3-center">Vote date</td>
                         <td class="w3-ymv1 w3-center">code</td>
-                        <td class="w3-ymv1 w3-center">Before debate</td>
-                        <td class="w3-ymv1 w3-center">After debate</td>                            
+                        <td class="w3-ymv1 w3-center">Before</td>
+                        <td class="w3-ymv1 w3-center">After</td>                            
                         
                         </tr>
                         <?php 

@@ -15,3 +15,10 @@
         } catch (PDOException $pe){
     echo 'Connection failed!' . $pe->getMessage();
         }
+
+
+            $stmt = $conn->prepare("SELECT * FROM status");
+            $stmt->execute();
+            $row = $stmt->fetch();
+
+            $_SESSION["current_status"] = $row["current_vote"];

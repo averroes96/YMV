@@ -29,8 +29,8 @@ body, html {height: 100%}
 <div class="bgimg w3-container w3-animate-opacity w3-text-white">
 <div class="w3-row-padding" style="min-height:70%">
   <div class="w3-quarter w3-padding-large">
-    <img src="images/ymv_logo.png" alt="Logo" style="max-height:100px">
-  </div>
+    <img class="w3-padding" src="images/ymv_logo.png" alt="Logo" style="max-height:100px">
+  </div> 
 <?php
         if($_SESSION["voteNbr"] == 0){  ?>    
   <div id="main-txt" class="w3-half w3-padding w3-center" style="margin:10% 0 0 0">
@@ -47,12 +47,12 @@ body, html {height: 100%}
               <input type="radio" name="poll" value="0">
               <span class="checkmark"></span>
             </label> 
-            <button id="load" type="submit" name="submit" class="w3-button w3-circle w3-padding w3-margin"><i class="fas fa-2x fa-arrow-circle-right w3-hover-text-blue"></i></button>                
+            <button id="load" type="submit" name="submit" class="w3-button w3-circle w3-padding w3-margin"><i class="fas fa-2x fa-arrow-circle-right w3-hover-ymv"></i></button>                
           </form>    
     </div>
 <?php   } else {    ?>
     <div id="main-txt" class="w3-half w3-padding w3-center" style="margin:20% 0 0 0">            
-      <p class="w3-blue w3-large w3-round w3-opacity w3-center w3-padding">Your first vote was submitted ! </p>
+      <p class="w3-ymv1 w3-large w3-round w3-opacity w3-center w3-padding">Your first vote was submitted ! </p>
     </div>      
             
 <?php        }   ?>      
@@ -64,20 +64,22 @@ body, html {height: 100%}
     </div>       
 </div>
 <!-- Footer -->
-<footer class="w3-container w3-padding-32 w3-light-grey w3-xlarge">
+<footer class="w3-container w3-padding-16 w3-light-grey w3-xlarge">
     <div class="w3-row-padding">    
-        <div class="w3-twothird">
-              <h3 class="w3-ymv-text">Co-sponsored by</h3>
-                    <img class="w3-animate-zoom w3-round w3-padding" src="images/Anna%20Lindh%20Foundation.png" alt="Sponsor1" style="width : 220px; height:100px">
-                    <img class="w3-animate-zoom w3-round w3-padding"  src="images/British%20Council.png" alt="Sponsor2" style="width : 220px; height:100px">
-        </div>    
         <div class="w3-third w3-center">
-                    <h3 class="w3-ymv-text">Co-Founded by</h3>
-                    <img class="w3-animate-zoom w3-round w3-padding"  src="images/flag_yellow_high.jpg" alt="Founder" style="width : 200px; height:100px">
+              <h5 class="w3-ymv-text">Co-sponsored by</h5>
+                    <img class="w3-animate-zoom w3-round w3-padding" src="images/Anna%20Lindh%20Foundation.png" alt="Sponsor1" style="width : 180px; height:70px">
+                    <img class="w3-animate-zoom w3-round w3-padding"  src="images/British%20Council.png" alt="Sponsor2" style="width : 180px; height:70px">
+        </div>    
+        <div class="w3-twothird">
+            <div class="w3-right">
+                    <h5 class="w3-ymv-text">Co-Founded by</h5>
+                    <img class="w3-animate-zoom"  src="images/flag_yellow_high.jpg" alt="Founder" style="width : 140px; height:70px">
+            </div>
         </div>
     </div>    
 
-</footer>    
+</footer>   
 </body>
 </html>
 <?php

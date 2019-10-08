@@ -57,7 +57,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <a href="#" class="w3-bar-item w3-button w3-padding w3-ymv1"><i class="fa fa-users fa-fw"></i>  Overview</a>
     <a href="codes.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Codes</a>
     <a href="votes.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Votes</a>      
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  New admin</a>
+    <a href="new-admin.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  New admin</a>
     <a href="../logout.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Logout</a>      
   </div>
 </nav>
@@ -104,7 +104,15 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-container w3-ymv1 w3-padding-16">
         <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>23</h3>
+          <h3><?php 
+        
+            if($_SESSION["current_status"] == 0){
+                echo countItems("*","vote",true,"vote_one",1);
+            }
+            else
+                echo countItems("*","vote",true,"vote_two",1);
+        ?>
+                                </h3>
         </div>
         <div class="w3-clear"></div>
         <h4>With</h4>
@@ -116,7 +124,17 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-container w3-ymv w3-text-white w3-padding-16">
         <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>50</h3>
+            <h3>
+                <?php 
+        
+            if($_SESSION["current_status"] == 0){
+                echo countItems("*","vote",true,"vote_one",0);
+            }
+            else
+                echo countItems("*","vote",true,"vote_two",0);
+            ?>            
+            
+            </h3>
         </div>
         <div class="w3-clear"></div>
         <h4>Against</h4>
@@ -127,11 +145,14 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
   <div class="w3-panel">
     <div class="w3-row-padding" style="margin:0 -16px">
-      <div class="w3-half w3-center">
-            <canvas class="w3-margin-top" id="myChart"></canvas>          
+          <div class="w3-half w3-center">
+                <canvas class="w3-margin-top" id="myChart"></canvas>          
+          </div>
+            <div class="w3-half">
+                <canvas class="w3-margin-top" id="myChart1"></canvas>
+            </div>
       </div>
-      <div class="w3-half">
-        <h5>Feeds</h5>
+        <h3 class="w3-center w3-ymv-text">Feeds</h3>
 <?php   if($countVotes > 0){  ?>          
         <table class="w3-table w3-striped w3-white">
 <?php   foreach ($votes as $vote){    ?>            
@@ -173,12 +194,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <?php   }   ?>            
         </table>
 <?php   }   ?>          
-      </div>
-    </div>
   </div>
   <hr>
   <div class="w3-container">
-      <h3 class="w3-center w3-ymv-text"><i class="fa fa-fw fa-chart-bar"></i> <b>General Stats</b></h3>
+      <h3 class="w3-center w3-ymv-text"><i class="fa fa-fw fa-chart-bar"></i> General Stats</h3>
     <p>With after the debate</p>
     <div class="w3-grey">
       <div class="w3-container w3-center w3-padding w3-green" style="width:25%">+25%</div>
@@ -292,7 +311,41 @@ function w3_close() {
             options: {
                 
                 title:{
-                    text:"Vote results"
+                    text:"First vote results"
+                }               
+                
+            }
+            
+           
+            
+            
+        });
+    
+    </script>
+    <script type="text/x-javascript">
+    
+        var ctx = document.getElementById("myChart1").getContext("2d");
+        var chart = new Chart(ctx, {
+            
+            type: "bar",
+            data: {
+                
+                labels: [<?php echo $withAgainst1 ?>,''],
+                datasets: [{
+                    
+                    label: "Votes",
+                    backgroundColor: "rgb(0, 104, 132)",
+                    borderColor: "rgb(0,139,139)",
+                    data: [<?php echo $counts1 ?>,0],
+                    steppedLine: true
+                    
+                }]
+                
+            },
+            options: {
+                
+                title:{
+                    text:"Second vote results"
                 }               
                 
             }
@@ -303,6 +356,7 @@ function w3_close() {
         });
     
     </script>    
+    
 
 </body>
 </html>

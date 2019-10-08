@@ -44,6 +44,7 @@
             if($count > 0){
                 
                 $_SESSION['username'] = $row["username"];
+                $_SESSION["current_status"] = 0;
                 header("location: dashboard.php");
                 exit();
             }
@@ -97,13 +98,13 @@ body{   background-color: #006884;    }
                 <form class="w3-padding-large" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
                     <h2 class="w3-center w3-ymv-text"><i class="fas fa-tachometer-alt"></i> Admin panel</h2>                     
                     <p><input required class="w3-input w3-input2 w3-margin w3-text-grey w3-light-grey w3-hover-shadow" type="text" name="username" placeholder="Username" style="max-width: -webkit-fill-available;" /></p>
-                    <i class="fa fa-user w3-input-icon"></i>
+                    <i class="fa fa-user w3-input-icon w3-ymv-text1"></i>
                     <p><input required class="w3-input w3-input2 w3-text-grey w3-margin w3-light-grey w3-hover-shadow" type="password" name="password" placeholder="Password" style="max-width: -webkit-fill-available;" /></p>
-                    <i class="fa fa-lock w3-input-icon"></i>
+                    <i class="fa fa-lock w3-input-icon w3-ymv-text1"></i>
                     <p class="w3-center"><button name="submit" class="w3-button w3-block w3-ymv1" type="submit" ><i class="fas fa-fw fa-sign-in-alt"></i> Login</button></p>
                 </form>
                 <?php if(isset($formErrors) && !empty($formErrors)){    ?>      
-                      <p class="w3-red w3-round w3-opacity w3-center w3-padding">
+                      <p class="w3-ymv w3-round w3-opacity w3-center w3-padding">
                 <?php
                                 foreach($formErrors as $error){
 
@@ -121,18 +122,20 @@ body{   background-color: #006884;    }
 <!-- Footer -->
 <footer class="w3-container w3-padding-16 w3-light-grey w3-xlarge">
     <div class="w3-row-padding">    
-        <div class="w3-twothird">
-              <h3 class="w3-ymv-text">Co-sponsored by</h3>
-                    <img class="w3-animate-zoom w3-round w3-padding" src="../images/Anna%20Lindh%20Foundation.png" alt="Sponsor1" style="width : 220px; height:100px">
-                    <img class="w3-animate-zoom w3-round w3-padding"  src="../images/British%20Council.png" alt="Sponsor2" style="width : 220px; height:100px">
-        </div>    
         <div class="w3-third w3-center">
-                    <h3 class="w3-ymv-text">Co-Founded by</h3>
-                    <img class="w3-animate-zoom w3-round w3-padding"  src="../images/flag_yellow_high.jpg" alt="Founder" style="width : 170px; height:100px">
+              <h5 class="w3-ymv-text">Co-sponsored by</h5>
+                    <img class="w3-animate-zoom w3-round w3-padding" src="../images/Anna%20Lindh%20Foundation.png" alt="Sponsor1" style="width : 180px; height:70px">
+                    <img class="w3-animate-zoom w3-round w3-padding"  src="../images/British%20Council.png" alt="Sponsor2" style="width : 180px; height:70px">
+        </div>    
+        <div class="w3-twothird">
+            <div class="w3-right">
+                    <h5 class="w3-ymv-text">Co-Founded by</h5>
+                    <img class="w3-animate-zoom"  src="../images/flag_yellow_high.jpg" alt="Founder" style="width : 140px; height:70px">
+            </div>
         </div>
     </div>    
 
-</footer>      
+</footer>     
 <script src="../js/jquery-3.4.1.min.js" ></script>     
 </body>    
 </html>

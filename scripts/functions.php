@@ -103,4 +103,37 @@
         return $randomString;
     }
 
+    function countItems($item, $table, $where = false, $attr = '', $value = ''){
+        
+        global $conn;
+        
+        if($where == true){
+        
+        $stmt = $conn->prepare("SELECT count($item) FROM $table WHERE $attr = $value");
+        $stmt->execute();
+            
+        }
+        
+        else{
+        $stmt = $conn->prepare("SELECT count($item) FROM $table");
+        $stmt->execute(); 
+            
+        }
+            
+        return $stmt->fetchColumn();
+        
+        
+    }
+
+    function checkRecord($select, $from, $value){
+        
+        global $conn;
+        
+        $stmt = $conn->prepare("SELECT $select FROM $from WHERE $select = ?");
+        $stmt->execute(array($value));
+        $count = $stmt->rowCount();
+        
+        return $count;
+    }
+
 ?>

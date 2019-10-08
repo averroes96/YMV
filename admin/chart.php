@@ -1,14 +1,6 @@
 <?php
 
 
-        $stmt = $conn->prepare("SELECT * FROM status LIMIT 1");
-        $stmt-> execute();
-        $row = $stmt->fetch();
-
-        $_SESSION["current_vote"] = $row["current_vote"];
-
-        if($row["current_vote"] == 0){
-
         $stmt = $conn->prepare("SELECT count(vote_one) as against FROM vote WHERE vote_one = 0");
         $stmt-> execute();
         
@@ -27,25 +19,22 @@
             
         $counts = $against_count . "," . $with_count;
         $withAgainst = " '" .$against . "' , '" . $with . "'";     
- 
-        }
-        else if($row["current_vote"] == 1) {
             
         $stmt = $conn->prepare("SELECT count(vote_two) as against FROM vote WHERE vote_two = 0");
         $stmt-> execute();
         
         $row = $stmt->fetch();
 
-        $against_count = $row["against"];
-        $againt = "Against";
+        $against_count1 = $row["against"];
+        $against1 = "Against";
             
         $stmt = $conn->prepare("SELECT count(vote_two) as with FROM vote WHERE vote_two = 1");
         $stmt-> execute();
         
         $row = $stmt->fetch();
 
-        $against_count = $row["with"];
-        $againt = "With";             
-            
-            
-        }
+        $with_count1 = $row["with"];
+        $with1 = "With";
+
+        $counts1 = $against_count1 . "," . $with_count1;
+        $withAgainst1 = " '" .$against1 . "' , '" . $with1 . "'";    
