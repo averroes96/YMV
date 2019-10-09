@@ -27,8 +27,13 @@
 <link rel="stylesheet" href="layout/css/Chart.css">     
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link href="../css/all.css" rel="stylesheet">   
+<style> html,body,h1,h2,h3,h4,h5,h6 { font-family: 'Exo', sans-serif; }</style>
 <style>
-html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+        @font-face{
+            src: url(layout/fonts/Exo-Regular.ttf);
+            font-family: Exo
+
+        }          
 </style>
 <body class="w3-light-grey">
 
@@ -56,7 +61,17 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <a href="#" class="w3-bar-item w3-button w3-padding w3-ymv1"><i class="fa fa-lock fa-fw"></i>  Codes</a>
     <a href="votes.php" class="w3-bar-item w3-button w3-padding"><i class="fas fa-vote-yea fa-fw"></i>  Votes</a>       
     <a href="new-admin.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw"></i>  New admin</a>
-    <a href="../logout.php" class="w3-bar-item w3-button w3-padding"><i class="fas fa-sign-out-alt fa-fw"></i>  Logout</a>      
+    <a href="../logout.php" class="w3-bar-item w3-button w3-padding"><i class="fas fa-sign-out-alt fa-fw"></i>  Logout</a>
+    <p class="w3-padding">Status : <span class="w3-round w3-ymv-text1">
+        <?php
+            if($_SESSION["current_vote"] == 0)  echo "Paused";
+            else if($_SESSION["current_vote"] == 1) echo "First vote";
+            else if($_SESSION["current_vote"] == 2) echo "Second vote";
+        
+        ?>
+        
+        
+        </span></p>        
   </div>
 </nav>
 
@@ -65,7 +80,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
     <div class="w3-main w3-container w3-animate-right" style="margin-left:300px;margin-top:43px;">
     
-                <div class="table-responsive w3-white w3-padding w3-margin-top">
+                <div class="table-responsive w3-white w3-padding w3-margin-top" style="min-height:500px">
                     
                     <h2 class="w3-center w3-text-dark-grey w3-margin-bottom">Codes Manager</h2>
                     <p style="margin: 0 20%"><input class="w3-input w3-border w3-margin-bottom" id="myInput" type="text" placeholder="Search code.."></p>                    
@@ -98,7 +113,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                     <div class="pagination"></div>
 <?php   }else{  ?>
     
-      <p class="w3-blue w3-round w3-opacity w3-center w3-padding">No codes inserted yet !</p>    
+      <p class="w3-blue w3-round w3-opacity w3-center w3-padding">No codes generated yet !</p>    
     
 <?php   }   ?>                    
                 

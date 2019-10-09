@@ -94,7 +94,7 @@
     }
 
     function generateRandomString($length = 8) {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
         $charactersLength = strlen($characters);
         $randomString = '';
         for ($i = 0; $i < $length; $i++) {
@@ -135,5 +135,54 @@
         
         return $count;
     }
+
+    function After($withAgainst){
+        
+        global $conn;
+        
+        if($withAgainst == "WITH"){
+        
+        $stmt = $conn->prepare("SELECT count(*) FROM vote WHERE vote_one = 1 AND vote_two = 0");
+        $stmt->execute();
+            
+        return $stmt->fetchColumn();
+        }
+        else{
+            
+        $stmt = $conn->prepare("SELECT count(*) FROM vote WHERE vote_one = 0 AND vote_two = 1");
+        $stmt->execute();
+            
+        return $stmt->fetchColumn();             
+            
+        }
+        
+        
+    }
+
+    function countVotes($withAgainst){
+        
+        global $conn;
+        
+        if($withAgainst == "WITH"){
+            
+        $stmt = $conn->prepare("SELECT count(*) FROM vote WHERE vote_one = 1");
+        $stmt->execute();
+            
+        return $stmt->fetchColumn();
+            
+        }
+        else{
+            
+        $stmt = $conn->prepare("SELECT count(*) FROM vote WHERE vote_one = 0");
+        $stmt->execute();
+            
+        return $stmt->fetchColumn();
+        }
+        
+        
+    }
+
+
+
 
 ?>

@@ -7,28 +7,23 @@
         
         if(isset($_SESSION["code"])){
 
-            if(isset($_POST["first-vote"])){
+            if(isset($_POST["second-vote"])){
                 
-                if($_SESSION["voteNbr"] < 1){
+                if($_SESSION["voteNbr"] == 1){
                 
                     $code = filter_var($_SESSION["code"], FILTER_SANITIZE_STRING);
 
                     $vote = $_POST["poll"];    
 
-                    $stmt = $conn->prepare("INSERT INTO vote(vote_date, code, vote_one) VALUES (now(), :zcode, :zvote)");
-                    $stmt->execute(array(
-                        
-                        "zcode" => $code,
-                        "zvote" => $vote
-
-                    ));
+                    $stmt = $conn->prepare("UPDATE vote SET vote_two = ?,vote_date = now() WHERE code = ?");
+                    $stmt->execute(array($vote,$code));
 
                     if($stmt){
                         
-                        $stmt = $conn->prepare("UPDATE code SET vote_count = 1 WHERE code = ?");
+                        $stmt = $conn->prepare("UPDATE code SET vote_count = 2 WHERE code = ?");
                         $stmt->execute(array($code));
                         
-                        $_SESSION["voteNbr"] = 1;
+                        $_SESSION["voteNbr"] = 2;
                         
                         header("location: index.php");
                         exit();

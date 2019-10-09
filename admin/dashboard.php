@@ -4,11 +4,31 @@
 
     session_start();
 
-    if(isset($_SESSION["username"])){
+    if(isset($_SESSION["username"])){       
+        
 
     include "../config.php";
 
     include "../scripts/functions.php";
+        
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        
+        if(isset($_POST["vote-status"])){
+            
+            $val = $_POST["status"];
+            
+            $stmt = $conn->prepare("UPDATE status SET current_vote = ?");
+            $stmt->execute(array($val));
+            
+            if($stmt){
+                
+                $_SESSION["current_vote"] = $val;
+                
+            }
+            
+        }
+        
+    }         
 
     include "chart.php";
 
@@ -29,8 +49,13 @@
 <link rel="stylesheet" href="layout/css/Chart.css">     
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link href="../css/all.css" rel="stylesheet">   
+<style> html,body,h1,h2,h3,h4,h5,h6 { font-family: 'Exo', sans-serif; }</style>
 <style>
-html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+        @font-face{
+            src: url(layout/fonts/Exo-Regular.ttf);
+            font-family: Exo
+
+        }          
 </style>
 <body class="w3-light-grey">
 
@@ -58,7 +83,18 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <a href="codes.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-lock fa-fw"></i>  Codes</a>
     <a href="votes.php" class="w3-bar-item w3-button w3-padding"><i class="fas fa-vote-yea fa-fw"></i>  Votes</a>      
     <a href="new-admin.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw"></i>  New admin</a>
-    <a href="../logout.php" class="w3-bar-item w3-button w3-padding"><i class="fas fa-sign-out-alt fa-fw"></i>  Logout</a>      
+    <a href="../logout.php" class="w3-bar-item w3-button w3-padding"><i class="fas fa-sign-out-alt fa-fw"></i>  Logout</a>
+    <p class="w3-padding">Status : <span class="w3-round w3-ymv-text1">
+        <?php
+            if($_SESSION["current_vote"] == 0)  echo "Paused";
+            else if($_SESSION["current_vote"] == 1) echo "First vote";
+            else if($_SESSION["current_vote"] == 2) echo "Second vote";
+        
+        ?>
+        
+        
+        </span>
+      </p>  
   </div>
 </nav>
 
@@ -71,7 +107,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
-    <h3 class="w3-center w3-ymv-text"><b><i class="fas fa-tachometer-alt"></i> My Dashboard</b></h3>
+    <h3 class="w3-center w3-ymv-text"><i class="fas fa-tachometer-alt"></i> My Dashboard</h3>
   </header>
 
   <div class="w3-row-padding w3-margin-bottom">
@@ -208,19 +244,19 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <hr>
   <div class="w3-container">
       <h3 class="w3-center w3-ymv-text"><i class="fa fa-fw fa-chart-bar"></i> General Stats</h3>
-    <p>With after the debate</p>
+    <p class="w3-ymv-text"><b>With after the debate</b></p>
     <div class="w3-grey">
-      <div class="w3-container w3-center w3-padding w3-green" style="width:25%">+25%</div>
+      <div class="w3-container w3-center w3-padding w3-ymv1" style="width:<?php if(countVotes("WITH") != 0) { echo (integer)((After("WITH") / countVotes("WITH"))*100) ; } else echo 0; ?>%">+<?php if(countVotes("WITH") != 0) { echo (integer)((After("WITH") / countVotes("WITH"))*100) ; } else echo 0; ?>%</div>
     </div>
 
-    <p>Against after the debate</p>
+    <p  class="w3-ymv-text1"><b>Against after the debate</b></p>
     <div class="w3-grey">
-      <div class="w3-container w3-center w3-padding w3-orange" style="width:50%">50%</div>
+      <div class="w3-container w3-center w3-padding w3-ymv" style="width:<?php if(countVotes("AGAINST") != 0) { echo (integer)((After("AGAINST") / countVotes("AGAINST"))*100) ;} else echo 0; ?>%"><?php if(countVotes("AGAINST") != 0) { echo (integer)((After("AGAINST") / countVotes("AGAINST"))*100) ;} else echo 0; ?>%</div>
     </div>
 
-    <p>Changed their opinion</p>
+    <p class="w3-text-red"><b>Changed their opinion</b></p>
     <div class="w3-grey">
-      <div class="w3-container w3-center w3-padding w3-red" style="width:75%">75%</div>
+      <div class="w3-container w3-center w3-padding w3-red" style="width:<?php if(getTotal("vote") != 0) { echo (integer)((After("AGAINST") + After("WITH") / getTotal("vote"))*100) ;} else echo 0; ?>%"><?php if(getTotal("vote") != 0) { echo (integer)((After("AGAINST") + After("WITH") / getTotal("vote"))*100) ;} else echo 0; ?>%</div>
     </div>
   </div>
   <hr>
@@ -240,28 +276,25 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   </div>
   <hr>
 
-  <div class="w3-container w3-dark-grey w3-padding-32">
-    <div class="w3-row">
-      <div class="w3-container w3-third">
-        <h5 class="w3-bottombar w3-border-green">Demographic</h5>
-        <p>Language</p>
-        <p>Country</p>
-        <p>City</p>
-      </div>
-      <div class="w3-container w3-third">
-        <h5 class="w3-bottombar w3-border-red">System</h5>
-        <p>Browser</p>
-        <p>OS</p>
-        <p>More</p>
-      </div>
-      <div class="w3-container w3-third">
-        <h5 class="w3-bottombar w3-border-orange">Target</h5>
-        <p>Users</p>
-        <p>Active</p>
-        <p>Geo</p>
-        <p>Interests</p>
-      </div>
-    </div>
+  <div class="w3-container w3-dark-grey w3-padding-32" id="status">
+    <form class="w3-center" style="margin:0 20%" method="post" action="<?php echo $_SERVER["PHP_SELF"] ?>#status">    
+        <h3 class="w3-bottombar w3-border-ymv w3-padding">Vote status</h3>
+            <label class="container">Paused
+              <input type="radio" name="status" value="0" <?php if($_SESSION["current_vote"] == 0) echo "checked" ?> >
+              <span class="checkmark"></span>
+            </label>
+
+            <label class="container">First vote
+              <input type="radio" name="status" value="1" <?php if($_SESSION["current_vote"] == 1) echo "checked" ?>>
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">Second vote
+              <input type="radio" name="status" value="2" <?php if($_SESSION["current_vote"] == 2) echo "checked" ?>>
+              <span class="checkmark"></span>
+            </label>          
+        <button class="w3-button w3-ymv1 w3-margin" name="vote-status">CONFIRM</button>       
+    </form>    
+
   </div>
 
   <!-- End page content -->

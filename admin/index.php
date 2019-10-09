@@ -70,9 +70,16 @@
 <link rel="stylesheet" href="../css/w3.css">
 <link rel="stylesheet" href="../css/custom.css">    
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link href="../css/all.css" rel="stylesheet">    
+<link href="../css/all.css" rel="stylesheet">
+<style> html,body,h1,h2,h3,h4,h5,h6 { font-family: 'Exo', sans-serif; }</style>
 <style>
-body,h1 {font-family: "Raleway", sans-serif}
+        @font-face{
+            src: url(layout/fonts/Exo-Regular.ttf);
+            font-family: Exo
+
+        }          
+</style>    
+<style>
 body, html {height: 100%}
 .bgimg {
   background-image: url('../images/main-picture.jpg');
@@ -103,7 +110,7 @@ body{   background-color: #006884;    }
                     <p class="w3-center"><button name="submit" class="w3-button w3-block w3-ymv1" type="submit" ><i class="fas fa-fw fa-sign-in-alt"></i> Login</button></p>
                 </form>
                 <?php if(isset($formErrors) && !empty($formErrors)){    ?>      
-                      <p class="w3-ymv w3-round w3-opacity w3-center w3-padding">
+                      <p class="w3-ymv w3-round w3-center w3-padding">
                 <?php
                                 foreach($formErrors as $error){
 

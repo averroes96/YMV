@@ -22,3 +22,5 @@
             $row = $stmt->fetch();
 
             $_SESSION["current_vote"] = $row["current_vote"];
+                
+                

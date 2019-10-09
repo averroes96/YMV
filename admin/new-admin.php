@@ -92,8 +92,13 @@
 <link rel="stylesheet" href="layout/css/Chart.css">     
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link href="../css/all.css" rel="stylesheet">   
+<style> html,body,h1,h2,h3,h4,h5,h6 { font-family: 'Exo', sans-serif; }</style>
 <style>
-html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+        @font-face{
+            src: url(layout/fonts/Exo-Regular.ttf);
+            font-family: Exo
+
+        }          
 </style>
 <body class="w3-light-grey">
 
@@ -121,7 +126,18 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <a href="codes.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-lock fa-fw"></i>  Codes</a>
     <a href="votes.php" class="w3-bar-item w3-button w3-padding"><i class="fas fa-vote-yea fa-fw"></i>  Votes</a>       
     <a href="new-admin.php" class="w3-bar-item w3-button w3-padding w3-ymv1"><i class="fa fa-user fa-fw"></i>  New admin</a>
-    <a href="../logout.php" class="w3-bar-item w3-button w3-padding"><i class="fas fa-sign-out-alt fa-fw"></i>  Logout</a>      
+    <a href="../logout.php" class="w3-bar-item w3-button w3-padding"><i class="fas fa-sign-out-alt fa-fw"></i>  Logout</a>
+    <p class="w3-padding">Status : <span class="w3-round w3-ymv-text1">
+        <?php
+            if($_SESSION["current_vote"] == 0)  echo "Paused";
+            else if($_SESSION["current_vote"] == 1) echo "First vote";
+            else if($_SESSION["current_vote"] == 2) echo "Second vote";
+        
+        ?>
+        
+        
+        </span>
+      </p>        
   </div>
 </nav>
 

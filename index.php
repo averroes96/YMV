@@ -36,12 +36,22 @@
             
             if($count > 0){
                 
-                if($_SESSION["current_vote"] == 1){
+                if($_SESSION["current_vote"] == 0){
+                
+                $formInfos = array();
+                    
+                $formInfos[] = "Elections are paused for now.";                    
+                                        
+                    
+                }                
+                
+                else if($_SESSION["current_vote"] == 1){
                 
                 if($row["vote_count"] == 0){
                 
                 $_SESSION['code'] = $_POST["code"];
                 $_SESSION["voteNbr"] = $row["vote_count"];
+                    
                 header("location: votePage.php");
                 exit();
                     
@@ -70,7 +80,7 @@
                     
                 $formInfos = array();
                     
-                $formInfos[] = "You have already submitted your vote using this code before and after the debate !";                    
+                $formInfos[] = "Sorry you can't access this page for now !";                    
                     
                 }                    
                     
@@ -104,7 +114,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link href="css/all.css" rel="stylesheet">    
 <style>
-body,h1 {font-family: "Raleway", sans-serif}
 body, html {height: 100%}
 .bgimg {
   background-image: url('images/main-picture.jpg');
@@ -117,13 +126,21 @@ body{
     background-color: #006884;    
     }
 </style>
+<style> html,body,h1,h2,h3,h4,h5,h6 { font-family: 'Exo', sans-serif; }</style>
+<style>
+        @font-face{
+            src: url(admin/layout/fonts/Exo-Regular.ttf);
+            font-family: Exo
+
+        }          
+</style>    
 <body>
 <div class="bgimg w3-animate-opacity w3-text-white">
 <div class="w3-row-padding">
   <div class="w3-quarter w3-padding-large">
     <img class="w3-padding" src="images/ymv_logo.png" alt="Logo" style="max-height:100px">
   </div>   
-  <div class="w3-half w3-padding" style="margin: 10% 0 0 0">
+  <div class="w3-half w3-padding" style="margin: 15% 0 0 0">
         <p class="w3-xlarge w3-animate-top w3-center">Welcome to the Algerian competition of debate</p>
         <p class="w3-xlarge w3-animate-top w3-center">Please insert your code here</p>
           <form class="w3-center" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST"> 
@@ -157,6 +174,12 @@ body{
 <?php   }   ?>
 
     </div>
+    <div class="w3-quarter w3-padding w-center w3-hide-large w3-hide-medium w3-animate-zoom" style="margin:20% 0">
+    
+        <h3 class="w3-text-white w3-center"><b>Co-Founded by</b></h3>
+        <p class="w3-center"><img  src="images/flag_yellow_high.jpg" alt="Founder" style="width : 200px; height:120px">  </p>      
+    
+    </div>
     </div>     
 
  
@@ -169,7 +192,7 @@ body{
                     <img class="w3-animate-zoom w3-round w3-padding" src="images/Anna%20Lindh%20Foundation.png" alt="Sponsor1" style="width : 180px; height:70px">
                     <img class="w3-animate-zoom w3-round w3-padding"  src="images/British%20Council.png" alt="Sponsor2" style="width : 180px; height:70px">
         </div>    
-        <div class="w3-twothird">
+        <div class="w3-twothird w3-hide-small ">
             <div class="w3-right">
                     <h5 class="w3-ymv-text">Co-Founded by</h5>
                     <img class="w3-animate-zoom"  src="images/flag_yellow_high.jpg" alt="Founder" style="width : 140px; height:70px">

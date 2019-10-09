@@ -34,12 +34,6 @@
         
     }    
         
-
-                        
-                        $stmt = $conn->prepare("UPDATE status SET current_vote = 1");
-                        $stmt->execute();
-                        
-                        $_SESSION["current_status"] = 0 ;
                         
                         header("location: ../admin/codes.php");
                         exit();
