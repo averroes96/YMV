@@ -55,7 +55,14 @@ $(function(){
         
         itemsToPaginate : ".main-table tr"
         
-    });      
+    });
+    
+    $(".confirm").click(function(){
+        
+       return confirm("Vous etes sure ?") ;
+        
+        
+    });    
     
     
 });
