@@ -37,14 +37,14 @@ body, html {height: 100%}
 <div class="w3-row-padding" style="min-height:60%">
   <div class="w3-quarter w3-padding-large">
     <img class="w3-padding" src="images/ymv_logo.png" alt="Logo" style="max-height:100px">
-    <a href="logout.php" class="w3-hover-text-blue w3-padding w3-large w3-right" style="text-decoration : none"><i class="fas fa-sign-out-alt"></i> Sign out</a>      
+    <a href="logout.php" class="w3-hover-ymv w3-padding w3-large w3-right w3-hide-large w3-hide-medium" style="text-decoration : none"><i class="fas fa-sign-out-alt"></i> Sign out</a>      
   </div> 
 <?php
         if($_SESSION["current_vote"] == 1){
             if($_SESSION["voteNbr"] == 0){  ?>    
-  <div id="main-txt" class="w3-half w3-padding w3-center">
-              <h1 class="w3-animate-top">First vote</h1>
-          <form class="w3-center w3-padding w3-animate-zoom" action="first-vote.php" method="POST"  style="margin:15% 0 0 0">
+  <div id="main-txt" class="w3-half w3-padding w3-center" style="margin:10% 0 0 0">
+              <h1 class="w3-animate-top w3-border-bottom" style="margin: 0 25%">First vote</h1>
+          <form class="w3-center w3-padding w3-animate-zoom" action="first-vote.php" method="POST"  style="margin:10% 0 0 0">
         <h3 class="w3-animate-zoom w3-center">Debate question here ?</h3>
         <br>              
             <label class="container">With
@@ -70,11 +70,11 @@ body, html {height: 100%}
         else if($_SESSION["current_vote"] == 2){    ?>
                
 <?php            if($_SESSION["voteNbr"] == 1){  ?>
-  <div id="main-txt" class="w3-half w3-padding w3-center">
-        <h3 class="w3-animate-top w3-center">Second vote</h3>       
+  <div id="main-txt" class="w3-half w3-padding w3-center" style="margin:10% 0 0 0">
+        <h1 class="w3-animate-top w3-center w3-border-bottom" style="margin: 0 25%">Second vote</h1>       
+          <form class="w3-center w3-padding w3-animate-zoom" action="second-vote.php" method="POST" style="margin:10% 0 0 0">
         <h3 class="w3-animate-zoom w3-center">Debate question here ?</h3>
-        <br>
-          <form class="w3-center w3-padding w3-animate-zoom" action="second-vote.php" method="POST" style="margin:15% 0 0 0"> 
+        <br>              
             <label class="container">With
               <input type="radio" name="poll" value="1">
               <span class="checkmark"></span>
@@ -104,14 +104,14 @@ body, html {height: 100%}
     
 <div class="w3-quarter w3-padding w3-hide-small">
 
-    <a href="logout.php" class="w3-hover-text-blue w3-padding w3-large w3-right" style="text-decoration : none"><i class="fas fa-sign-out-alt"></i> Sign out</a>
+    <a href="logout.php" class="w3-hover-ymv w3-padding w3-large w3-right" style="text-decoration : none"><i class="fas fa-sign-out-alt"></i> Sign out</a>
     
 </div>
    
     </div>
             <div class="w3-center w3-padding w3-hide-large w3-hide-medium ">
                     <h3 class="w3-text-white"><b>Co-Founded by</b></h3>
-                    <img class="w3-animate-zoom"  src="images/flag_yellow_high.jpg" alt="Founder" style="width : 260px; height:130px">
+                    <img class="w3-animate-zoom"  src="images/flag_yellow_high.jpg" alt="Founder" style="width : 200px; height:120px">
             </div>     
 </div>
 <!-- Footer -->

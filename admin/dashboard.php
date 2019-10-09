@@ -107,7 +107,7 @@
 
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
-    <h3 class="w3-center w3-ymv-text"><i class="fas fa-tachometer-alt"></i> My Dashboard</h3>
+    <h3 class="w3-center w3-text-grey"><i class="fas fa-tachometer-alt"></i> My Dashboard</h3>
   </header>
 
   <div class="w3-row-padding w3-margin-bottom">
@@ -193,7 +193,7 @@
                 <canvas class="w3-margin-top" id="myChart1"></canvas>
             </div>
       </div>
-        <h3 class="w3-center w3-ymv-text"><i class="fas fa-fw fa-rss"></i> Feeds</h3>
+        <h3 class="w3-center w3-text-grey"><i class="fas fa-fw fa-rss"></i> Feeds</h3>
 <?php   if($countVotes > 0){  ?>          
         <table class="w3-table w3-striped w3-white">
 <?php   foreach ($votes as $vote){    ?>            
@@ -238,12 +238,12 @@
       
       else{
       ?>
-      <p class="w3-ymv1 w3-round w3-opacity w3-center w3-padding" style="width:">No recent activities</p>      
+      <p class="w3-ymv1 w3-round w3-opacity w3-center w3-padding" style="margin: 5% 20% 10%">No recent activities</p>      
       <?php  }   ?>
   </div>
   <hr>
   <div class="w3-container">
-      <h3 class="w3-center w3-ymv-text"><i class="fa fa-fw fa-chart-bar"></i> General Stats</h3>
+      <h3 class="w3-center w3-text-grey"><i class="fa fa-fw fa-chart-bar"></i> General Stats</h3>
     <p class="w3-ymv-text"><b>With after the debate</b></p>
     <div class="w3-grey">
       <div class="w3-container w3-center w3-padding w3-ymv1" style="width:<?php if(countVotes("WITH") != 0) { echo (integer)((After("WITH") / countVotes("WITH"))*100) ; } else echo 0; ?>%">+<?php if(countVotes("WITH") != 0) { echo (integer)((After("WITH") / countVotes("WITH"))*100) ; } else echo 0; ?>%</div>
@@ -262,15 +262,15 @@
   <hr>
 
   <div class="w3-container">
-      <h3 class="w3-center w3-ymv-text"><i class="fas fa-vote-yea"></i> Ratio</h3>
+      <h3 class="w3-center w3-text-grey"><i class="fas fa-vote-yea"></i> Ratio</h3>
     <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
       <tr>
-        <td>With</td>
-        <td><?php if(getTotal("vote") != 0){ echo (integer)(($with_count / getTotal("vote")) * 100); } else {echo 0;} ?> %</td>
+        <td><b  class="w3-ymv-text">With</b></td>
+        <td  class="w3-ymv-text"><?php if(getTotal("vote") != 0){ echo (integer)(($with_count / getTotal("vote")) * 100); } else {echo 0;} ?> %</td>
       </tr>
       <tr>
-        <td>Against</td>
-        <td><?php if(getTotal("vote") != 0){ echo (integer)(($against_count / getTotal("vote")) * 100); } else {echo 0;} ?> %</td>
+          <td><b class="w3-ymv-text1">Against</b></td>
+        <td  class="w3-ymv-text1"><?php if(getTotal("vote") != 0){ echo (integer)(($against_count / getTotal("vote")) * 100); } else {echo 0;} ?> %</td>
       </tr>
     </table><br>
   </div>

@@ -41,7 +41,7 @@
 <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
     <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu
     </button>
-  <span class="w3-bar-item w3-right"><img src="../images/ymv_logo.png" alt="Logo" style="max-height:40px; max-width:40px"></span>
+  <a href="../index.php" class="w3-bar-item w3-right"><img src="../images/ymv_logo.png" alt="Logo" style="max-height:40px; max-width:40px"></a>
 </div>
 
 <!-- Sidebar/menu -->
@@ -113,7 +113,7 @@
                     <div class="pagination"></div>
 <?php   }else{  ?>
     
-      <p class="w3-blue w3-round w3-opacity w3-center w3-padding">No codes generated yet !</p>    
+      <p class="w3-blue w3-round w3-opacity w3-center w3-padding" style="margin: 0 20%">No codes generated yet !</p>    
     
 <?php   }   ?>                    
                 
