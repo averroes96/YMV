@@ -156,7 +156,7 @@
                             
                             
                             ?></td>
-                        <td class="w3-center"><a href="votes.php?do=delete&voteID=<?php echo $vote["vote_id"] ?>&code=<?php echo $vote["code"] ?>" class="w3-padding w3-ymv w3-circle w3-hover-red confirm"><i class="fa fa-xs fa-times"></i></a></td>    
+                        <td class="w3-center"><a href="votes.php?do=delete&voteID=<?php echo $vote["vote_id"] ?>&code=<?php echo $vote["code"] ?>" class="confirm"><i class="fa fa-times w3-padding w3-circle w3-ymv w3-hover-red"></i></a></td>    
                         
                         </tr>                            
 

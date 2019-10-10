@@ -59,7 +59,7 @@ $(function(){
     
     $(".confirm").click(function(){
         
-       return confirm("Vous etes sure ?") ;
+       return confirm("Are you sure ?") ;
         
         
     });    

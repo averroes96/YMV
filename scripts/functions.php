@@ -142,14 +142,14 @@
         
         if($withAgainst == "WITH"){
         
-        $stmt = $conn->prepare("SELECT count(*) FROM vote WHERE vote_one = 1 AND vote_two = 0");
+        $stmt = $conn->prepare("SELECT count(*) FROM vote WHERE vote_one = 0 AND vote_two = 1");
         $stmt->execute();
             
         return $stmt->fetchColumn();
         }
         else{
             
-        $stmt = $conn->prepare("SELECT count(*) FROM vote WHERE vote_one = 0 AND vote_two = 1");
+        $stmt = $conn->prepare("SELECT count(*) FROM vote WHERE vote_one = 1 AND vote_two = 0");
         $stmt->execute();
             
         return $stmt->fetchColumn();             

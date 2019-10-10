@@ -244,19 +244,19 @@
   <hr>
   <div class="w3-container">
       <h3 class="w3-center w3-text-grey"><i class="fa fa-fw fa-chart-bar"></i> General Stats</h3>
-    <p class="w3-ymv-text"><b>With after the debate</b></p>
+    <p class="w3-ymv-text"><b>With after the debate</b> ( <?php echo After("WITH") ?> )</p>
     <div class="w3-grey">
       <div class="w3-container w3-center w3-padding w3-ymv1" style="width:<?php if(countVotes("WITH") != 0) { echo (integer)((After("WITH") / countVotes("WITH"))*100) ; } else echo 0; ?>%">+<?php if(countVotes("WITH") != 0) { echo (integer)((After("WITH") / countVotes("WITH"))*100) ; } else echo 0; ?>%</div>
     </div>
 
-    <p  class="w3-ymv-text1"><b>Against after the debate</b></p>
+    <p  class="w3-ymv-text1"><b>Against after the debate</b> ( <?php echo After("AGAINST") ?> )</p>
     <div class="w3-grey">
       <div class="w3-container w3-center w3-padding w3-ymv" style="width:<?php if(countVotes("AGAINST") != 0) { echo (integer)((After("AGAINST") / countVotes("AGAINST"))*100) ;} else echo 0; ?>%"><?php if(countVotes("AGAINST") != 0) { echo (integer)((After("AGAINST") / countVotes("AGAINST"))*100) ;} else echo 0; ?>%</div>
     </div>
 
-    <p class="w3-text-red"><b>Changed their opinion</b></p>
+    <p class="w3-text-red"><b>Changed their opinion</b> ( <?php echo After("AGAINST") +  After("WITH") ?> )</p>
     <div class="w3-grey">
-      <div class="w3-container w3-center w3-padding w3-red" style="width:<?php if(getTotal("vote") != 0) { echo (integer)((After("AGAINST") + After("WITH") / getTotal("vote"))*100) ;} else echo 0; ?>%"><?php if(getTotal("vote") != 0) { echo (integer)((After("AGAINST") + After("WITH") / getTotal("vote"))*100) ;} else echo 0; ?>%</div>
+      <div class="w3-container w3-center w3-padding w3-red" style="width:<?php if(getTotal("vote") != 0) { echo (integer)(((After("AGAINST") + After("WITH")) / getTotal("vote"))*100) ;} else echo 0; ?>%"><?php if(getTotal("vote") != 0) { echo (integer)(((After("AGAINST") + After("WITH")) / getTotal("vote"))*100) ;} else echo 0; ?>%</div>
     </div>
   </div>
   <hr>
@@ -279,16 +279,16 @@
   <div class="w3-container w3-dark-grey w3-padding-32" id="status">
     <form class="w3-center" style="margin:0 20%" method="post" action="<?php echo $_SERVER["PHP_SELF"] ?>#status">    
         <h3 class="w3-bottombar w3-border-ymv w3-padding">Vote status</h3>
-            <label class="container">Paused
+            <label class="container" style="font-size:18px">Paused
               <input type="radio" name="status" value="0" <?php if($_SESSION["current_vote"] == 0) echo "checked" ?> >
               <span class="checkmark"></span>
             </label>
 
-            <label class="container">First vote
+            <label class="container" style="font-size:18px">First vote
               <input type="radio" name="status" value="1" <?php if($_SESSION["current_vote"] == 1) echo "checked" ?>>
               <span class="checkmark"></span>
             </label>
-            <label class="container">Second vote
+            <label class="container" style="font-size:18px">Second vote
               <input type="radio" name="status" value="2" <?php if($_SESSION["current_vote"] == 2) echo "checked" ?>>
               <span class="checkmark"></span>
             </label>          
@@ -326,12 +326,11 @@ function w3_close() {
   overlayBg.style.display = "none";
 }
 </script>
-    <script>
+<script>
     Chart.defaults.global.title.display = true;
     Chart.defaults.global.title.text = "No title";   
     </script>
-    
-    <script type="text/x-javascript">
+<script type="text/x-javascript">
     
         var ctx = document.getElementById("myChart").getContext("2d");
         var chart = new Chart(ctx, {
@@ -365,7 +364,7 @@ function w3_close() {
         });
     
     </script>
-    <script type="text/x-javascript">
+<script type="text/x-javascript">
     
         var ctx = document.getElementById("myChart1").getContext("2d");
         var chart = new Chart(ctx, {

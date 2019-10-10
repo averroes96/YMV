@@ -28,12 +28,12 @@
         $against_count1 = $row["against"];
         $against1 = "Against";
             
-        $stmt = $conn->prepare("SELECT count(vote_two) as with FROM vote WHERE vote_two = 1");
+        $stmt = $conn->prepare("SELECT count(vote_two) as avec FROM vote WHERE vote_two = 1");
         $stmt-> execute();
         
         $row = $stmt->fetch();
 
-        $with_count1 = $row["with"];
+        $with_count1 = $row["avec"];
         $with1 = "With";
 
         $counts1 = $against_count1 . "," . $with_count1;

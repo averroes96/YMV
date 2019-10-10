@@ -137,13 +137,13 @@ body{
 <body>
 <div class="bgimg w3-animate-opacity w3-text-white">
 <div class="w3-row-padding">
-  <div class="w3-quarter w3-padding-large">
+  <div class="w3-quarter w3-animate-left w3-padding-large">
     <img class="w3-padding" src="images/ymv_logo.png" alt="Logo" style="max-height:100px">
   </div>   
   <div class="w3-half w3-padding" style="margin: 15% 0 0 0">
         <p class="w3-xlarge w3-animate-top w3-center">Welcome to the Algerian competition of debate</p>
         <p class="w3-xlarge w3-animate-top w3-center">Please insert your code here</p>
-          <form class="w3-center" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST"> 
+          <form class="w3-center w3-animate-top" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST"> 
             <input autocomplete="off" required name="code" type="text" class="w3-animate-input code-input w3-input w3-round w3-hover-shadow w3-text-grey" placeholder="Enter your code">
             <i class="fa fa-unlock-alt w3-ymv-text"></i>
             <button name="submit" type="submit" class="w3-button w3-circle w3-padding w3-margin"><i class="fas fa-2x fa-arrow-circle-right w3-hover-ymv"></i></button> 
