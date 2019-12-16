@@ -1,5 +1,5 @@
 # YMV
-A PHP/JS/CSS based voting system website
+A PHP/JS/CSS based voting system website using MySQL as database
 
 ## Setup :
 
