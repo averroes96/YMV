@@ -18,4 +18,4 @@ A PHP/JS/CSS based voting system website using MySQL as database
 ![](gui/homepage.png)
 
 ### Admin panel
-![](interfaces/admin_panel.png)
+![](gui/admin_panel.png)
