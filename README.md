@@ -11,3 +11,11 @@ A PHP/JS/CSS based voting system website using MySQL as database
 ### Admin panel : http://localhost/YMV/admin/ 
  * username: admin 
  * password: admin
+ 
+ ## Screenshots
+
+### Homepage
+![](gui/homepage.png)
+
+### Admin panel
+![](interfaces/admin_panel.png)
